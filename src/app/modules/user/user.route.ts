@@ -4,6 +4,20 @@ import { UserController } from './user.controller';
 import { UserValidation } from './user.validation';
 const router = express.Router();
 
-router.post('/create-user', UserController.createUser);
+router.post(
+  '/create-user',
+  validateRequest(UserValidation.createUserZodSchema),
+  UserController.createUser,
+);
+router.get('/:id', UserController.getSingleUser);
+router.get('/', UserController.getAllUser);
+
+router.patch(
+  '/:id',
+  validateRequest(UserValidation.updatedUserSchema),
+  UserController.updateUser,
+);
+
+router.delete('/:id', UserController.deleteUser);
 
 export const UserRoutes = router;
