@@ -24,7 +24,7 @@ export type IUser = {
   currentAddress?: string;
   permanentAddress?: string;
 };
-export type UserModel = Model<IUser, Record<string, unknown>>;
+// export type UserModel = Model<IUser, Record<string, unknown>>;
 export type IUserFilters = {
   searchTerm?: string;
   email?: string;
@@ -34,3 +34,12 @@ export type IUserFilters = {
   postCode?: number;
   country?: string;
 };
+export type UserModel = {
+  isUserExist(
+    email: string,
+  ): Promise<Pick<IUser, 'email' | 'password' | 'role'>>;
+  isPasswordMatched(
+    givenPassword: string,
+    savedPassword: string,
+  ): Promise<boolean>;
+} & Model<IUser>;
