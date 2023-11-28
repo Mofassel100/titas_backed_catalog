@@ -1,18 +1,38 @@
-// import { Model, Types } from 'mongoose';
+import { Model, Types } from 'mongoose';
+import { IUser } from '../user/user.interface';
+import { ICategory, ITopCategory } from '../categorys/category.interface';
+import { ENUM_DESIGNATION } from '../../../enums/designation';
+export type IMyBook = {
+  service: string;
+  userStatus?: boolean;
+  userId: Types.ObjectId | IUser;
+  topCategoryId: Types.ObjectId | ITopCategory;
+  userEmail: string;
+  status: boolean;
+  designation: ENUM_DESIGNATION;
+  publishdate: string;
+  title: string;
+  tname: string;
+  description: string;
+  wname: string;
+  wdescription: string;
+  image: string;
+  imageTitle: string;
+  imageDetails: string;
+  twoImage: string;
+  twoImageTitle: string;
+  twoImageDetails: string;
+  topImage: string;
+  wimage: string;
+};
+export type IMyBookModal = Model<IMyBook>;
+// export type MyBookDetailsModel = Model<IMyBookDetails>;
 
-// export type StudentModel = Model<IStudent, Record<string, unknown>>;
-
-export type ICategoryFilters = {
+export type IMyBookFilters = {
   searchTerm?: string;
   title?: string;
   tname?: string;
   wname?: string;
   service?: string;
   userEmail?: string;
-};
-export type ITopCategoryFilters = {
-  searchTerm?: string;
-  title?: string;
-  tname?: string;
-  wname?: string;
 };

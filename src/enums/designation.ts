@@ -9,4 +9,7 @@ export enum ENUM_DESIGNATION {
   TRANSLATION = 'translation',
   PAITING = 'paiting',
   MOVIE = 'movie',
+  USER = 'user',
+  ADMIN = 'admin',
+  SUPER_ADMIN = 'super_admin',
 }

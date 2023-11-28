@@ -1,5 +1,4 @@
 import { boolean, string, z } from 'zod';
-import { bloodGroup, gender } from './category.constant';
 import { ENUM_USER_ROLE } from '../../../enums/user';
 
 const createCategoryZodSchema = z.object({
@@ -34,9 +33,6 @@ const createCategoryZodSchema = z.object({
 const createTopCategoryZodSchema = z.object({
   body: z.object({
     userId: z.string({ required_error: 'UserId is Required' }),
-    topCategoryId: z.string({
-      required_error: 'Top Category Id is required',
-    }),
     status: z.boolean({ required_error: 'status is Required' }),
     designation: z.string({ required_error: 'designation is Required' }),
     title: z.string({ required_error: 'title is Required' }),

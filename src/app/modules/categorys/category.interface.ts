@@ -31,3 +31,17 @@ export type ICategory = {
 
 export type CategoryModel = Model<ICategory>;
 export type TopCategoryModel = Model<ITopCategory>;
+export type ICategoryFilters = {
+  searchTerm?: string;
+  title?: string;
+  tname?: string;
+  wname?: string;
+  service?: string;
+  userEmail?: string;
+};
+export type ITopCategoryFilters = {
+  searchTerm?: string;
+  title?: string;
+  tname?: string;
+  wname?: string;
+};

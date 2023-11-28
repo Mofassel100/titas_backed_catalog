@@ -1,134 +1,74 @@
 import { Schema, model } from 'mongoose';
-
-// export const StudentSchema = new Schema<IStudent, StudentModel>(
+import { ENUM_DESIGNATION } from '../../../enums/designation';
+import ApiError from '../../../errors/ApiError';
+import httpStatus from 'http-status';
+import { IMyBook } from './mybook.interface';
+import {
+  Category,
+  CategorySchema,
+  TopCategory,
+} from '../categorys/category.model';
+// const MyBookSchema = new Schema<IMyBook>(
 //   {
-//     id: {
-//       type: String,
-//       required: true,
-//       unique: true,
-//     },
-//     name: {
-//       type: {
-//         firstName: {
-//           type: String,
-//           required: true,
-//         },
-//         lastName: {
-//           type: String,
-//           required: true,
-//         },
-//         middleName: {
-//           type: String,
-//           required: false,
-//         },
-//       },
-//       required: true,
-//     },
-//     gender: {
-//       type: String,
-//       enum: gender,
-//     },
-//     dateOfBirth: {
-//       type: String,
-//     },
-//     email: {
-//       type: String,
-//       unique: true,
-//       required: true,
-//     },
-//     contactNo: {
-//       type: String,
-//       unique: true,
-//       required: true,
-//     },
-//     emergencyContactNo: {
+//     service: {
 //       type: String,
 //       required: true,
 //     },
-//     bloodGroup: {
-//       type: String,
-//       enum: bloodGroup,
-//     },
-//     presentAddress: {
-//       type: String,
-//       required: true,
-//     },
-//     permanentAddress: {
-//       type: String,
-//       required: true,
-//     },
-//     guardian: {
-//       required: true,
-//       type: {
-//         fatherName: {
-//           type: String,
-//           required: true,
-//         },
-//         fatherOccupation: {
-//           type: String,
-//           required: true,
-//         },
-//         fatherContactNo: {
-//           type: String,
-//           required: true,
-//         },
-//         motherName: {
-//           type: String,
-//           required: true,
-//         },
-//         motherOccupation: {
-//           type: String,
-//           required: true,
-//         },
-//         motherContactNo: {
-//           type: String,
-//           required: true,
-//         },
-//         address: {
-//           type: String,
-//           required: true,
-//         },
-//       },
-//     },
-//     localGuardian: {
-//       required: true,
-//       type: {
-//         name: {
-//           type: String,
-//           required: true,
-//         },
-//         occupation: {
-//           type: String,
-//           required: true,
-//         },
-//         contactNo: {
-//           type: String,
-//           required: true,
-//         },
-//         address: {
-//           type: String,
-//           required: true,
-//         },
-//       },
-//     },
-//     academicFaculty: {
+//     userId: {
 //       type: Schema.Types.ObjectId,
-//       ref: 'AcademicFaculty',
-//       required: true,
+//       ref: 'Users',
 //     },
-//     academicDepartment: {
+//     topCategoryId: {
 //       type: Schema.Types.ObjectId,
-//       ref: 'AcademicDepartment',
-//       required: true,
+//       ref: 'TopCategory',
 //     },
-//     academicSemester: {
-//       type: Schema.Types.ObjectId, // academicSemester --> _id
-//       ref: 'AcademicSemester',
-//       required: true,
-//     },
-//     profileImage: {
+//     userEmail: {
 //       type: String,
-//       // required: true,
+//       required: true,
+//     },
+//     status: {
+//       type: Boolean,
+//       required: true,
+//     },
+//     designation: {
+//       type: String,
+//       enum: ENUM_DESIGNATION,
+//     },
+//     publishdate: {
+//       type: String,
+//       required: true,
+//     },
+//     title: {
+//       type: String,
+//       required: true,
+//     },
+//     tname: {
+//       type: String,
+//       required: true,
+//     },
+//     description: {
+//       type: String,
+//       required: true,
+//     },
+//     wname: {
+//       type: String,
+//       required: true,
+//     },
+//     wdescription: {
+//       type: String,
+//       required: true,
+//     },
+//     image: {
+//       type: String,
+//       required: true,
+//     },
+//     topImage: {
+//       type: String,
+//       required: true,
+//     },
+//     wimage: {
+//       type: String,
+//       required: true,
 //     },
 //   },
 //   {
@@ -139,8 +79,114 @@ import { Schema, model } from 'mongoose';
 //   },
 // );
 
-// StudentSchema.index({
-//   bloodGroup: 1,
-// });
+export const MyBookDetailsSchema = new Schema<IMyBook>(
+  {
+    publishdate: {
+      type: String,
+      required: true,
+    },
+    service: {
+      type: String,
+      required: true,
+    },
+    topCategoryId: {
+      type: Schema.Types.ObjectId,
+      required: true,
+    },
 
-// export const Student = model<IStudent, StudentModel>('Student', StudentSchema);
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: 'Users',
+    },
+    designation: {
+      type: String,
+      enum: ENUM_DESIGNATION,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: String,
+      required: true,
+    },
+    imageTitle: {
+      type: String,
+      required: true,
+    },
+    imageDetails: {
+      type: String,
+      required: true,
+    },
+    tname: {
+      type: String,
+      required: true,
+    },
+    topImage: {
+      type: String,
+      required: true,
+    },
+    userStatus: {
+      type: String,
+      required: true,
+    },
+    wdescription: {
+      type: String,
+      required: true,
+    },
+    wimage: {
+      type: String,
+      required: true,
+    },
+    wname: {
+      type: String,
+      required: true,
+    },
+    status: {
+      type: Boolean,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+    userEmail: {
+      type: String,
+      required: true,
+    },
+    twoImage: {
+      type: String,
+      required: true,
+    },
+    twoImageTitle: {
+      type: String,
+      required: true,
+    },
+    twoImageDetails: {
+      type: String,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+    toJSON: {
+      virtuals: true,
+    },
+  },
+);
+CategorySchema.pre('save', async function (next) {
+  const isExist = await TopCategory.findOne({
+    title: this.title,
+  });
+
+  if (!isExist) {
+    throw new ApiError(
+      httpStatus.CONFLICT,
+      'Book Detaits title not matched is already exist !',
+    );
+  }
+  next();
+});
+
+// export const MyBookModel = model<IMyBook>('MyBook', MyBookSchema);
+export const MyBookModel = model<IMyBook>('category', MyBookDetailsSchema);

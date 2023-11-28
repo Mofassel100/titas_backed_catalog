@@ -1,24 +1,15 @@
-export const CategorySearchableFields = [
+export const MyBookSearchableFields = [
   'title',
   'service',
   'tname',
   'userEmail',
   'wname',
 ];
-
-export const CategoryFilterableFields = [
+export const MyBookFilterableFields = [
   'searchTerm',
   'title',
   'service',
   'tname',
   'userEmail',
-  'wname',
-];
-export const TCategorySearchabFields = ['title', 'tname', 'wname'];
-
-export const TopCategoryFilteraFields = [
-  'searchTerm',
-  'title',
-  'tname',
   'wname',
 ];

@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 import { ICategory, ITopCategory } from './category.interface';
 import ApiError from '../../../errors/ApiError';
 import httpStatus from 'http-status';
-const CategorySchema = new Schema<ICategory>(
+export const CategorySchema = new Schema<ICategory>(
   {
     service: {
       type: String,
@@ -112,11 +112,14 @@ const TopCategorySchema = new Schema<ITopCategory>(
 );
 
 CategorySchema.pre('save', async function (next) {
-  const isExist = await Category.findOne({
+  const isExist = await TopCategory.findOne({
     title: this.title,
   });
-  if (isExist) {
-    throw new ApiError(httpStatus.CONFLICT, 'Category is already exist !');
+  if (!isExist) {
+    throw new ApiError(
+      httpStatus.CONFLICT,
+      'Title does not mached is already exist !',
+    );
   }
   next();
 });
